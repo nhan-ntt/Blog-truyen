@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Yummy Bootstrap Template - Index</title>
+  <title>Yummy hehehe</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -77,6 +77,12 @@
             </ul>
           </li>
           <li><a href="#contact">Contact</a></li>
+          {% if user.is_authenticated %}
+          <li><a class="btn-book-a-table" href="logout">Logout</a>
+          {% else %}
+          <li><a class="btn-book-a-table" href="login">Login or Signup</a>
+          {% endif %}
+          </li>
         </ul>
       </nav><!-- .navbar -->
 
@@ -92,6 +98,12 @@
     <div class="container">
       <div class="row justify-content-between gy-5">
         <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+          {% if user.is_authenticated %}
+          <h2 data-aos="fade-up">Welcome, {{user.username}}</2>
+          {% else %}
+          <h2 data-aos="fade-up">Hello</h2>
+          {% endif %}
+
           <h2 data-aos="fade-up">Enjoy Your Healthy<br>Delicious Food</h2>
           <p data-aos="fade-up" data-aos-delay="100">Sed autem laudantium dolores. Voluptatem itaque ea consequatur eveniet. Eum quas beatae cumque eum quaerat.</p>
           <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
