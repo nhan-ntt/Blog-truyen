@@ -5,14 +5,11 @@ from django.http import HttpResponse
 
 def index(request):
     # return HttpResponse('<h1>Blog Home</h1>')
-    dic = {
-        'name': 'nhon', 
-        'quote': 'gambatte'
-    }
-    return render(request, 'index.html', dic)
+
+    return render(request, 'index.html')
 
 def counter(request):
-    words = request.GET['words']   #name = 'words' in index.html
+    words = request.POST['words']   #name = 'words' in index.html
     lengthOfWords = len(words.split())
     return render(request, 'counter.html', {'length': lengthOfWords, 'words': words})
     
