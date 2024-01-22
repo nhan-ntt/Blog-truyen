@@ -1,17 +1,15 @@
-#
-# Complete the 'print_full_name' function below.
-#
-# The function is expected to return a STRING.
-# The function accepts following parameters:
-#  1. STRING first
-#  2. STRING last
-#
+from sqlalchemy import create_engine
+from sqlalchemy.exc import OperationalError
 
-def print_full_name(first, last):
-    # Write your code here
-    print (first + " " + last)
+# Replace 'DATABASE_URL' with your actual database URL
+DATABASE_URL = "postgresql://postgres:admin@localhost:5432/nhon"
+engine = create_engine(DATABASE_URL)
 
-if __name__ == '__main__':
-    first_name = input()
-    last_name = input()
-    print_full_name(first_name, last_name)
+try:
+    # Execute a simple query to check the connection
+    with engine.connect() as connection:
+        connection.execute("SELECT 1")
+
+    print("Database connected successfully!")
+except OperationalError as e:
+    print(f"Error connecting to the database: {e}")
