@@ -1,15 +1,15 @@
 from pydantic import BaseModel
 from typing import Optional
 
-class Story(BaseModel):
+class StorySchema(BaseModel):
     id: int
     title: str
+    description: str
     author: str
     # Add other fields as necessary
 
-class Chapter(BaseModel):
+class ChapterSchema(BaseModel):
     id: int
     story_id: int
     title: str
     content: Optional[str] = None
-    # Add other fields as necessary

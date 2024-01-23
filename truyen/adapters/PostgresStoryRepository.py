@@ -7,10 +7,16 @@ class PostgresStoryRepository(StoryRepository):
     def __init__(self, session: Session):
         self.session = session
 
-    def create_story(self, story: Story) -> Story:
-        self.session.add(story)
+    # def create_story(self, story: Story) -> Story:
+    #     self.session.add(story)
+    #     self.session.commit()
+    #     return story
+    def create_story(self, title: str, description: str, author: str) -> Story:
+        new_story = Story(title=title, description=description, author=author)
+        self.session.add(new_story)
         self.session.commit()
-        return story
+        self.session.refresh(new_story)
+        return new_story
 
     def read_story_by_id(self, story_id: int) -> Story:
         return self.session.query(Story).filter(Story.id == story_id).first()
@@ -19,8 +25,8 @@ class PostgresStoryRepository(StoryRepository):
         return self.session.query(Story).all()
 
     def update_story(self, story_id: int, updated_story: Story) -> Story:
-        exist_story = self.session.query(Story).filter(Story.id == story_id).first()
-        if exist_story:
+        existing_story = self.session.query(Story).filter(Story.id == story_id).first()
+        if existing_story:
             existing_story.title = updated_story.title
             existing_story.description = updated_story.description
             existing_story.author = updated_story.author

@@ -7,13 +7,16 @@ class PostgresChapterRepository(ChapterRepository):
     def __init__(self, session: Session):
         self.session = session
 
-    def create_chapter(self, chapter: Chapter) -> Chapter:
-        self.session.add(chapter)
+    def create_chapter(self, story_id: str, title: str, content: str) -> Chapter:
+        new_chapter = Chapter(story_id=story_id, title=title, content=content)
+        self.session.add(new_chapter)
         self.session.commit()
-        return chapter
+        self.session.refresh(new_chapter)
+        return new_chapter
 
-    def read_chapter_by_id(self, chapter_id: int) -> Chapter:
-        return self.session.query(Chapter).filter(Chapter.id == chapter_id).first()
+    def read_chapter_by_id(self, story_id, chapter_id: int) -> Chapter:
+        # return self.session.query(Chapter).filter(Chapter.id == chapter_id).first()
+        return self.session.query(Chapter).filter(Chapter.story_id == story_id).filter(Chapter.id == chapter_id).first()
 
     def read_chapters_of_story(self, story_id: int) -> List[Chapter]:
         return self.session.query(Chapter).filter(Chapter.story_id == story_id).all()
