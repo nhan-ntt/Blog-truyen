@@ -16,7 +16,10 @@ class PostgresStoryRepository(StoryRepository):
         self.session.add(new_story)
         self.session.commit()
         self.session.refresh(new_story)
-        return new_story
+        result = dict(
+            id=new_story.id
+        )
+        return result
 
     def read_story_by_id(self, story_id: int) -> Story:
         return self.session.query(Story).filter(Story.id == story_id).first()
