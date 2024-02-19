@@ -7,10 +7,11 @@ Base = declarative_base()
 class Story(Base):
     __tablename__ = 'story'
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     title = Column(String(255), nullable=False, index=True)
     description = Column(String(255), nullable=False)
     author = Column(String(255), nullable=False)
+    code = Column(String(255), nullable=False, unique=True)
 
     chapters = relationship("Chapter", back_populates="story")
 

@@ -10,7 +10,7 @@ from adapters.PostgresChapterRepository import PostgresChapterRepository
 
 from core.models import Base
 
-DATABASE_URL = "postgresql://postgres:admin@localhost:5432/nhon"
+DATABASE_URL = "postgresql://postgres:thanhnhan1911@localhost:5432/nhon"
 # DATABASE_URL = "sqlite:///./test.db"
 
 engine = create_engine(DATABASE_URL)

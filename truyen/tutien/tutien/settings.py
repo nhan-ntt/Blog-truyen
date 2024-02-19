@@ -62,9 +62,16 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "tutien.pipelines.TutienPipeline": 300,
-#}
+ITEM_PIPELINES = {
+   "tutien.pipelines.TutienPipeline": 300,
+}
+
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    'scrapy_user_agents.middlewares.RandomUserAgentMiddleware': 400,
+}
+
+DATABASE_URI = 'postgresql://postgres:thanhnhan1911@localhost:5432/nhon'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
