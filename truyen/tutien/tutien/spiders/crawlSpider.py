@@ -4,6 +4,7 @@ from sqlalchemy import create_engine
 from ..items import TutienItem, StoryItem, ChapterItem
 from slugify import slugify
 from core import models
+import time
 
 class MySpider(scrapy.Spider):
     name = 'hehe'
@@ -48,6 +49,8 @@ class MySpider(scrapy.Spider):
         chapter_item['content'] = " ".join(response.css('.box-chap::text').extract())
         chapter_item['story_id'] = story.id
         print("alskjfffffffffalkffff", story.id)
+        # self.logger.info("Response text: %s", response.text)
+        time.sleep(5)
         yield chapter_item
 
     

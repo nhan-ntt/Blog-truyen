@@ -12,9 +12,9 @@ class StoryRepository(ABC):
         pass
 
     @abstractmethod
-    def read_all_stories(self) -> List[Story]:
+    def read_stories_of_genre(self, genre_id: int) -> List[Story]:
         pass
-
+    
     @abstractmethod
     def update_story(self, story_id: int, updated_story: Story) -> Story:
         pass
